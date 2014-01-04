@@ -12,7 +12,7 @@ namespace idx
 
     using intg = System.Int32;
 
-    public class idx<T> : IDisposable
+    public class idx<T> : IDisposable where T : struct
     {
 
         #region idx memory methods
@@ -798,8 +798,8 @@ namespace idx
             }
             else
             { // tensor
-                s += " min " + idxops.idx_min(this);
-                s += " max " + idxops.idx_max(this);
+                s += " min " + idxops<T>.idx_min(this);
+                s += " max " + idxops<T>.idx_max(this);
             }
             s += ")";
             return s;

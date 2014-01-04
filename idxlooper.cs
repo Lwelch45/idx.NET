@@ -12,7 +12,7 @@ namespace idx
     //! and eloop macros. idxlooper is a subclass of idx,
     //! It is used as follows:
     //! for (idxlooper z(&idx,0); z.notdone(); z.next()) { .... }
-    public class idxlooper<T> : idx<T>
+    public class idxlooper<T> : idx<T> where T : struct
     {
         intg i;  // loop index
         intg dimd;  // number of elements to iterated upon

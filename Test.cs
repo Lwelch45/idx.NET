@@ -43,9 +43,9 @@ namespace idx
             idx<T> d1 = new idx<T>(5);
             idx<T> o = new idx<T>(2);
 
-            idxops.idx_fill(d2, 2.0);
-            idxops.idx_fill(d1, 1.0);
-            idxops.idx_m2dotm1(d2, d1, o);
+            idxops<T>.idx_fill(d2, 2.0);
+            idxops<T>.idx_fill(d1, 1.0);
+            idxops<T>.idx_m2dotm1(d2, d1, o);
             loops.idx_bloop1(o, (lop, o1) => Global.Print(o.get()));
         }
 

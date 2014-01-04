@@ -25,7 +25,7 @@ namespace idx
     //! At any point during the loop, the indices of the element
     //! being worked on is stored in idx.d[k] for k=0
     //! to idx.order()-1.
-    public class idxiter<T> //use type variable not yet achieved
+    public class idxiter<T> where T : struct //use type variable not yet achieved
     {
         public eptr<T> data; //!< pointer to current item
         intg i; //!< number of elements visited so far (loop index)

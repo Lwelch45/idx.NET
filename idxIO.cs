@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Base;
+
 namespace idx
 {
     public static class idxIO
@@ -33,7 +34,7 @@ namespace idx
 
 
 
-        public static int get_magic<T>()
+        public static int get_magic<T>() where T : struct
         {
             if (typeof(T) == typeof(UInt64)) { return MAGIC_UINT64_MATRIX; }
             if (typeof(T) == typeof(uint)) { return MAGIC_UINT_MATRIX; }
@@ -193,28 +194,28 @@ namespace idx
             return dims;
         }
 
-        static public void read_matrix_body<T>(ref FILE fp, ref idx<T> m)
+        static public void read_matrix_body<T>(ref FILE fp, ref idx<T> m) where T : struct
         {
             int read_count;
             var fp_0 = fp;
             loops.idx_aloop1(m, (i) =>
             {
-                T ii = i.item;
-                read_count = fp_0.fread(ref ii); i.item = ii;
+                // ii = i.item;
+                read_count = fp_0.fread<T>((ii) => i.item = ii); //i.item = ii;
                 if (read_count != 1)
                     Global.eblerror("Read incorrect number of bytes ");
             });
 
         }
 
-        static public void read_cast_matrix<T, T2>(ref FILE fp, ref idx<T2> Out)
+        static public void read_cast_matrix<T, T2>(ref FILE fp, ref idx<T2> Out) where T  : struct where T2 :struct
         {
             idx<T> m = new idx<T>(Out.get_idxdim());
             read_matrix_body(ref fp, ref m);
-            idxops.idx_copy(m, Out);
+            idxops<T>.idx_copy<T2>(m, Out);
         }
 
-        public static idx<T> load_matrix<T>(ref FILE fp, idx<T> out_)
+        public static idx<T> load_matrix<T>(ref FILE fp, idx<T> out_) where T : struct
         {
             int magic = 0;
             idxdim dims = read_matrix_header(ref fp, ref magic);
@@ -283,7 +284,7 @@ namespace idx
 
         }
 
-        public static idx<T> load_matrix<T>(ref FILE fp)
+        public static idx<T> load_matrix<T>(ref FILE fp) where T : struct
         {
             int magic = 0;
             idxdim dims = read_matrix_header(ref fp, ref magic);
@@ -347,7 +348,7 @@ namespace idx
 
         }
 
-        public static idx<T> load_matrix<T>(String filename)
+        public static idx<T> load_matrix<T>(String filename) where T : struct
         {
             FILE fp = new FILE(filename);
             if (fp == null) { Global.eblerror("load_matrix failed to open " + filename); }
@@ -365,7 +366,7 @@ namespace idx
             return m;
         }
 
-        public static bool save_matrix<T>(idx<T> m, FILE fp)
+        public static bool save_matrix<T>(idx<T> m, FILE fp) where T : struct
         {
             int v;
             v = get_magic<T>();

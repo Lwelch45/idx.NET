@@ -16,11 +16,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,22 +42,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="eptr.cs" />
+    <Compile Include="fidxdim.cs" />
     <Compile Include="FILE.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="idx.cs" />
+    <Compile Include="idxd.cs" />
+    <Compile Include="idxdim.cs" />
     <Compile Include="idxIO.cs" />
     <Compile Include="idxiter.cs" />
     <Compile Include="idxlooper.cs" />
     <Compile Include="idxops.cs" />
+    <Compile Include="idxspec.cs" />
     <Compile Include="loops.cs" />
+    <Compile Include="MersenneTwister.cs" />
     <Compile Include="numerics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="srg.cs" />
     <Compile Include="svector.cs" />
     <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Base\Base.csproj">
-      <Project>{09CDC92F-8A9E-42C4-8D00-2289E7DB5D82}</Project>
-      <Name>Base</Name>
+    <ProjectReference Include="..\FileReaderExtension\GenericBitConverter.vcxproj">
+      <Project>{19D8DF16-3B71-4D64-A0E6-ED2EF7C77A5D}</Project>
+      <Name>GenericBitConverter</Name>
     </ProjectReference>
     <ProjectReference Include="..\PointerFactory\PointerFactory.csproj">
       <Project>{0CBFB905-1749-4D08-A29F-710615AE7F6D}</Project>
