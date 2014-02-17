@@ -1,8 +1,8 @@
-idx.NET
+idx.NET - The .NET tensor library
+-
 
-Model multidemsional data eaisly and effectively
-
-
+Model multidemsional data eaisly and effectively:
+--
 
 Netdx is a working implementation featuring:
 -------------------------------------------
